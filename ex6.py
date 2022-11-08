@@ -6,9 +6,13 @@ C is 50. H is 30.
 D is the variable whose values should be input to your program in a comma-separated sequence.'''
 from math import sqrt
 
+def calculate(num):
+    return sqrt((2* 50 * num)/30)
+
 num = input('Enter numbers separeted with coma: ').split(',')
 num = [int(i) for i in num]
 
-for i in num:
-    q = sqrt((2* 50 * num[0])/30)
-    print(q)
+q = [calculate(i) for i in num]
+q = [round(i) for i in q]
+q = [str(i) for i in q]
+print(','.join(q))
