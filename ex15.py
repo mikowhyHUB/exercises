@@ -9,11 +9,3 @@ for row in range(0, 7):
             result = result + ' '
     result = result + '\n'
 print(result)
-
-#   ***
-#  *   *
-#  *   *
-#  *****
-#  *   *
-#  *   *
-#  *   *
