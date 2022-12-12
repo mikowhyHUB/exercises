@@ -66,15 +66,12 @@ def student_ranking(student_scores, student_names):
     """
     outcome = [str(place+1) + '. ' + name+': ' for place,
                name in enumerate(student_names)]
-    # for place, name in enumerate(student_names):
-    #     outcome.append(str(place+1) + '. ' + name+': ')
     x = [str(outcome[i]) + str(student_scores[i]) for i in range(len(outcome))]
     return x
 
 
 student_scores = [100, 99, 90, 84, 66, 53, 47]
 student_names = ['Joci', 'Sara', 'Kora', 'Jan', 'John', 'Bern', 'Fred']
-print(student_ranking(student_scores, student_names))
 
 
 def perfect_score(student_info):
@@ -84,4 +81,9 @@ def perfect_score(student_info):
     :return: list - first `[<student name>, 100]` or `[]` if no student score of 100 is found.
     """
 
-    pass
+    perfect_scores = [record for record in student_info if record[1] == 100]
+    return perfect_scores[0] if perfect_scores else []
+
+
+print(perfect_score(student_info=[['Joci', 100], [
+      'Vlad', 100], ['Raiana', 100], ['Alessandro', 100]]))
