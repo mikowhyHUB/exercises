@@ -14,17 +14,17 @@ def round_scores(student_scores):
     return outcome
 
 
-student_scores = [90.33, 40.5, 55.44, 70.05,
-                  30.55, 25.45, 80.45, 95.3, 38.7, 40.3]
-print(round_scores(student_scores))
-
-
 def count_failed_students(student_scores):
     """Count the number of failing students out of the group provided.
 
     :param student_scores: list - containing int student scores.
     :return: int - count of student scores at or below 40.
     """
+    passed = 0
+    for num in student_scores:
+        if num <= 40:
+            passed += 1
+    return passed
 
 
 def above_threshold(student_scores, threshold):
@@ -34,8 +34,11 @@ def above_threshold(student_scores, threshold):
     :param threshold: int - threshold to cross to be the "best" score.
     :return: list - of integer scores that are at or above the "best" threshold.
     """
-
-    pass
+    outcome = []
+    for num in student_scores:
+        if num >= threshold:
+            outcome.append(num)
+    return outcome
 
 
 def letter_grades(highest):
@@ -51,8 +54,7 @@ def letter_grades(highest):
             71 <= "B" <= 85
             86 <= "A" <= 100
     """
-
-    pass
+    return list(range(41, highest, (highest-40)//4))
 
 
 def student_ranking(student_scores, student_names):
@@ -62,8 +64,17 @@ def student_ranking(student_scores, student_names):
     :param student_names: list - of string names by exam score in descending order.
     :return: list - of strings in format ["<rank>. <student name>: <score>"].
     """
+    l = []
+    l = ((str(score+1) + ' ' + name)
+         for score, name in enumerate(student_names))
+    print(l)
+    # for score, name in enumerate(student_names):
+    #     print(list(str(score+1) + ' ' + name))
 
-    pass
+
+student_scores = [100, 99, 90, 84, 66, 53, 47]
+student_names = ['Joci', 'Sara', 'Kora', 'Jan', 'John', 'Bern', 'Fred']
+print(student_ranking(student_scores, student_names))
 
 
 def perfect_score(student_info):
