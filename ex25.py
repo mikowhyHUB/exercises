@@ -64,12 +64,12 @@ def student_ranking(student_scores, student_names):
     :param student_names: list - of string names by exam score in descending order.
     :return: list - of strings in format ["<rank>. <student name>: <score>"].
     """
-    l = []
-    l = ((str(score+1) + ' ' + name)
-         for score, name in enumerate(student_names))
-    print(l)
-    # for score, name in enumerate(student_names):
-    #     print(list(str(score+1) + ' ' + name))
+    outcome = [str(place+1) + '. ' + name+': ' for place,
+               name in enumerate(student_names)]
+    # for place, name in enumerate(student_names):
+    #     outcome.append(str(place+1) + '. ' + name+': ')
+    x = [str(outcome[i]) + str(student_scores[i]) for i in range(len(outcome))]
+    return x
 
 
 student_scores = [100, 99, 90, 84, 66, 53, 47]
