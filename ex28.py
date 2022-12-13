@@ -2,13 +2,15 @@
 
 
 # TODO: define the 'get_list_of_wagons' function
-def get_list_of_wagons(*numbers):
+def get_list_of_wagons(numbers):
     """Return a list of wagons.
 
     :param: arbitrary number of wagons.
     :return: list - list of wagons.
     """
-    return list(numbers)
+    # for i in numbers:
+    #     print(i)
+    return [list(num) for num in numbers]
 
 
 # TODO: define the 'fixListOfWagons()' function
@@ -28,19 +30,22 @@ def fix_list_of_wagons(each_wagons_id, missing_wagons):
     return [c]+list(outcome)
 
 
-print(fix_list_of_wagons([2, 5, 1, 7, 4, 12, 6, 3, 13], [3, 17, 6, 15]))
-#[1, 3, 17, 6, 15, 7, 4, 12, 6, 3, 13, 2, 5]
-
-
 # TODO: define the 'add_missing_stops()' function
-def add_missing_stops():
+def add_missing_stops(route, stop_1, stop_2, stop_3, stop_4, stop_5):
     """Add missing stops to route dict.
 
     :param route: dict - the dict of routing information.
     :param: arbitrary number of stops.
     :return: dict - updated route dictionary.
     """
-    pass
+    return route
+
+
+print(add_missing_stops({"from": "New York", "to": "Miami"},
+                        stop_1="Washington, DC", stop_2="Charlotte", stop_3="Atlanta",
+                        stop_4="Jacksonville", stop_5="Orlando"))
+
+#{"from": "New York", "to": "Miami", "stops": ["Washington, DC", "Charlotte", "Atlanta", "Jacksonville", "Orlando"]}
 
 
 # TODO: define the 'extend_route_information()' function
