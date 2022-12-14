@@ -68,23 +68,4 @@ def fix_wagon_depot(wagons_rows):
     wagons_rows[0][1], wagons_rows[0][2], wagons_rows[1][0], wagons_rows[1][2], wagons_rows[2][0], wagons_rows[2][
         1] = wagons_rows[1][0], wagons_rows[2][0], wagons_rows[0][1], wagons_rows[2][1], wagons_rows[0][2], wagons_rows[1][2]
 
-    # wagons_rows[0][1],wagons_rows[0][2] = wagons_rows[1][0], wagons_rows[2][0]
-    # wagons_rows[1][0],wagons_rows[1][2] = wagons_rows[0][1], wagons_rows[2][1]
-    # wagons_rows[1][0], wagons_rows[1][1] = wagons_rows[0][2], wagons_rows[1][2]
-    # wagons_rows[0][1], wagons_rows[0][2] = wagons_rows[1][0], wagons_rows[2][0]
-    # wagons_rows[1][0], wagons_rows[1][2] = wagons_rows[0][1], wagons_rows[2][1]
-    # wagons_rows[2][0], wagons_rows[2][1] = wagons_rows[0][2], wagons_rows[1][2]
     return wagons_rows
-
-
-print(fix_wagon_depot([
-    [(2, "red"), (4, "red"), (8, "red")],
-    [(5, "blue"), (9, "blue"), (13, "blue")],
-    [(3, "orange"), (7, "orange"), (11, "orange")],
-]))
-
-# [
-# [(2, "red"), (5, "blue"), (3, "orange")],
-# [(4, "red"), (9, "blue"), (7, "orange")],
-# [(8, "red"), (13,"blue"), (11, "orange")]
-# ]
