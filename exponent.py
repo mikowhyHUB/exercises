@@ -7,5 +7,6 @@ def exponent(base, exp):
     return base ** exp
 
 
-print(exponent(2, 5))
-print(exponent(5, 4))
+l1 = {1, 2, 2, 2, 2}
+l2 = {3, 4, 4, 4, 4}
+print(l1 | l2)
