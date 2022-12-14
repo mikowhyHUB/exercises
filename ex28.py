@@ -31,21 +31,16 @@ def fix_list_of_wagons(each_wagons_id, missing_wagons):
 
 
 # TODO: define the 'add_missing_stops()' function
-def add_missing_stops(route, stop_1, stop_2, stop_3, stop_4, stop_5):
+def add_missing_stops(route, **kwargs):
     """Add missing stops to route dict.
 
     :param route: dict - the dict of routing information.
     :param: arbitrary number of stops.
     :return: dict - updated route dictionary.
     """
+    stops = [kwargs[stop] for stop in kwargs]
+    route.update({'stops': stops})
     return route
-
-
-print(add_missing_stops({"from": "New York", "to": "Miami"},
-                        stop_1="Washington, DC", stop_2="Charlotte", stop_3="Atlanta",
-                        stop_4="Jacksonville", stop_5="Orlando"))
-
-#{"from": "New York", "to": "Miami", "stops": ["Washington, DC", "Charlotte", "Atlanta", "Jacksonville", "Orlando"]}
 
 
 # TODO: define the 'extend_route_information()' function
@@ -56,14 +51,40 @@ def extend_route_information(route, more_route_information):
     :param more_route_information: dict -  extra route information.
     :return: dict - extended route information.
     """
-    pass
+    combined_route = {**route, **more_route_information}
+    return combined_route
 
 
 # TODO: define the 'fix_wagon_depot()' function
+
+
 def fix_wagon_depot(wagons_rows):
     """Fix the list of rows of wagons.
 
     :param wagons_rows: list[list[tuple]] - the list of rows of wagons.
     :return: list[list[tuple]] - list of rows of wagons.
     """
-    pass
+
+    wagons_rows[0][1], wagons_rows[0][2], wagons_rows[1][0], wagons_rows[1][2], wagons_rows[2][0], wagons_rows[2][
+        1] = wagons_rows[1][0], wagons_rows[2][0], wagons_rows[0][1], wagons_rows[2][1], wagons_rows[0][2], wagons_rows[1][2]
+
+    # wagons_rows[0][1],wagons_rows[0][2] = wagons_rows[1][0], wagons_rows[2][0]
+    # wagons_rows[1][0],wagons_rows[1][2] = wagons_rows[0][1], wagons_rows[2][1]
+    # wagons_rows[1][0], wagons_rows[1][1] = wagons_rows[0][2], wagons_rows[1][2]
+    # wagons_rows[0][1], wagons_rows[0][2] = wagons_rows[1][0], wagons_rows[2][0]
+    # wagons_rows[1][0], wagons_rows[1][2] = wagons_rows[0][1], wagons_rows[2][1]
+    # wagons_rows[2][0], wagons_rows[2][1] = wagons_rows[0][2], wagons_rows[1][2]
+    return wagons_rows
+
+
+print(fix_wagon_depot([
+    [(2, "red"), (4, "red"), (8, "red")],
+    [(5, "blue"), (9, "blue"), (13, "blue")],
+    [(3, "orange"), (7, "orange"), (11, "orange")],
+]))
+
+# [
+# [(2, "red"), (5, "blue"), (3, "orange")],
+# [(4, "red"), (9, "blue"), (7, "orange")],
+# [(8, "red"), (13,"blue"), (11, "orange")]
+# ]
