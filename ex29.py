@@ -8,6 +8,7 @@ from sets_categories_data import (VEGAN,
                                   OMNIVORE,
                                   ALCOHOLS,
                                   SPECIAL_INGREDIENTS)
+from sets_categories_data import example_dishes, EXAMPLE_INTERSECTION
 
 
 def clean_ingredients(dish_name, dish_ingredients):
@@ -26,12 +27,6 @@ def clean_ingredients(dish_name, dish_ingredients):
     return tuple(outcome)
 
 
-print(clean_ingredients('Punjabi-Style Chole', ['onions', 'tomatoes', 'ginger paste', 'garlic paste', 'ginger paste', 'vegetable oil', 'bay leaves', 'cloves', 'cardamom',
-      'cilantro', 'peppercorns', 'cumin powder', 'chickpeas', 'coriander powder', 'red chili powder', 'ground turmeric', 'garam masala', 'chickpeas', 'ginger', 'cilantro']))
-
-#('Punjabi-Style Chole', {'garam masala', 'bay leaves', 'ground turmeric', 'ginger', 'garlic paste', 'peppercorns', 'ginger paste', 'red chili powder', 'cardamom', 'chickpeas', 'cumin powder', 'vegetable oil', 'tomatoes', 'coriander powder', 'onions', 'cilantro', 'cloves'})
-
-
 def check_drinks(drink_name, drink_ingredients):
     """Append "Cocktail" (alcohol)  or "Mocktail" (no alcohol) to `drink_name`, based on `drink_ingredients`.
 
@@ -43,8 +38,11 @@ def check_drinks(drink_name, drink_ingredients):
     name followed by "Cocktail" (includes alcohol).
 
     """
-
-    pass
+    drink_ingredients = set(drink_ingredients)
+    if drink_ingredients.isdisjoint(ALCOHOLS):
+        return drink_name + ' Mocktail'
+    else:
+        return drink_name + ' Cocktail'
 
 
 def categorize_dish(dish_name, dish_ingredients):
@@ -59,8 +57,16 @@ def categorize_dish(dish_name, dish_ingredients):
     All dishes will "fit" into one of the categories imported from `sets_categories_data.py`
 
     """
-
-    pass
+    if dish_ingredients.issubset(VEGAN):
+        return dish_name + ': VEGAN'
+    elif dish_ingredients.issubset(VEGETARIAN):
+        return dish_name + ': VEGETARIAN'
+    elif dish_ingredients.issubset(PALEO):
+        return dish_name + ': PALEO'
+    elif dish_ingredients.issubset(KETO):
+        return dish_name + ': KETO'
+    else:
+        return dish_name + ': OMNIVORE'
 
 
 def tag_special_ingredients(dish):
@@ -73,8 +79,10 @@ def tag_special_ingredients(dish):
     For the purposes of this exercise, all allergens or special ingredients that need to be tracked are in the
     SPECIAL_INGREDIENTS constant imported from `sets_categories_data.py`.
     """
-
-    pass
+    outcome = set(dish[1])
+    outcome = SPECIAL_INGREDIENTS.intersection(outcome)
+    outcome = (dish[0], outcome)
+    return outcome
 
 
 def compile_ingredients(dishes):
@@ -86,7 +94,8 @@ def compile_ingredients(dishes):
     This function should return a `set` of all ingredients from all listed dishes.
     """
 
-    pass
+    outcome = set(j for i in dishes for j in i)
+    return outcome
 
 
 def separate_appetizers(dishes, appetizers):
@@ -99,8 +108,10 @@ def separate_appetizers(dishes, appetizers):
     The function should return the list of dish names with appetizer names removed.
     Either list could contain duplicates and may require de-duping.
     """
-
-    pass
+    dishes = set(dishes)
+    appetizers = set(appetizers)
+    dishes.difference_update(appetizers)
+    return list(dishes)
 
 
 def singleton_ingredients(dishes, intersection):
@@ -118,4 +129,10 @@ def singleton_ingredients(dishes, intersection):
     The function should return a `set` of ingredients that only appear in a single dish.
     """
 
-    pass
+    for i in example_dishes:
+        print(i & EXAMPLE_INTERSECTION)
+
+
+print(singleton_ingredients(example_dishes, EXAMPLE_INTERSECTION))
+
+#{'vegetable oil', 'vegetable stock', 'barley malt', 'tofu', 'fresh basil', 'lemon', 'ginger', 'honey', 'spaghetti', 'cornstarch', 'yeast', 'red onion', 'breadcrumbs', 'mixed herbs', 'garlic powder', 'celeriac', 'lemon zest', 'sunflower oil', 'mushrooms', 'silken tofu', 'smoked tofu', 'bell pepper', 'cashews', 'oregano', 'tomatoes', 'parsley', 'red pepper flakes', 'rosemary'}
