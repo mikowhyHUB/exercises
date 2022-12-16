@@ -129,10 +129,7 @@ def singleton_ingredients(dishes, intersection):
     The function should return a `set` of ingredients that only appear in a single dish.
     """
 
-    for i in example_dishes:
-        print(i & EXAMPLE_INTERSECTION)
-
-
-print(singleton_ingredients(example_dishes, EXAMPLE_INTERSECTION))
-
-#{'vegetable oil', 'vegetable stock', 'barley malt', 'tofu', 'fresh basil', 'lemon', 'ginger', 'honey', 'spaghetti', 'cornstarch', 'yeast', 'red onion', 'breadcrumbs', 'mixed herbs', 'garlic powder', 'celeriac', 'lemon zest', 'sunflower oil', 'mushrooms', 'silken tofu', 'smoked tofu', 'bell pepper', 'cashews', 'oregano', 'tomatoes', 'parsley', 'red pepper flakes', 'rosemary'}
+    res = set()
+    for dish in dishes:
+        res.update(dish.difference(intersection))
+    return res
