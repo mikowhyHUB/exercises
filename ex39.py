@@ -3,7 +3,7 @@ def transform(legacy_data):
     for key in legacy_data:
         for value in legacy_data[key]:
             data.update({value.casefold(): key})
-    print(data)
+    return data
 
 
 legacy_data = {1: ["A", "E"], 2: ["D", "G"]}
