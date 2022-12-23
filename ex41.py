@@ -21,8 +21,6 @@ def convert(number):
         outcome += 'Plang'
     if number % 7 == 0:
         outcome += 'Plong'
-    # else:
-    #     outcome += str(number)
     return outcome or str(number)
 
 
